@@ -1,6 +1,10 @@
 const container = document.querySelector("#container");
 const fileInput = document.querySelector("#file-input");
 
+/**
+ * Loads training data for facial recognition.
+ * @returns {Promise<faceapi.LabeledFaceDescriptors[]>} The face descriptors for each labeled face.
+ */
 async function loadTrainingData() {
   const labels = [
     "Fukada Eimi",
@@ -81,6 +85,8 @@ fileInput.addEventListener("change", async () => {
     const drawBox = new faceapi.draw.DrawBox(detection.detection.box, {
       label: faceMatcher.findBestMatch(detection.descriptor).toString(),
     });
+
+    //     console.log(faceMatcher.findBestMatch(detection.descriptor));
     drawBox.draw(canvas);
   }
 });
